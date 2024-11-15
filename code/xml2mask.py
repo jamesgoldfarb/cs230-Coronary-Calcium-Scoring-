@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+"""
+This script converts DICOM files to NIfTI format using pydicom and nibabel libraries.
+It takes two command-line arguments: the directory containing the DICOM files and the directory to save the converted NIfTI files.
+"""
+
 import os
 import pydicom
 import nibabel as nib
@@ -5,6 +12,8 @@ import numpy as np
 import argparse
 
 def dicom_to_nifti(dicom_dir, output_dir):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     for patient_id in os.listdir(dicom_dir):
         patient_dir = os.path.join(dicom_dir, patient_id)
         if os.path.isdir(patient_dir):
